@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, deleteTodo, completeTodo } from "./store/todo";
 import { useState } from "react";
-import "./app.css";
+import "./assets/main.css";
 
 const App = () => {
   const todos = useSelector((state) => state.todos);

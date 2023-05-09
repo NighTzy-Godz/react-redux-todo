@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, deleteTodo, completeTodo } from "./store/todo";
+import { useState } from "react";
+import "./app.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const todos = useSelector((state) => state.todos);
+
+  const dispatch = useDispatch();
+
+  const [task, setTask] = useState("");
+
+  const handleDelete = (id) => {
+    dispatch(deleteTodo(id));
+  };
+
+  const handleComplete = (id) => {
+    dispatch(completeTodo(id));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (task) {
+      dispatch(addTodo(task));
+      setTask("");
+    }
+  };
+
+  const renderTodo = () => {
+    if (todos.length === 0) return <h1>No Todo At The Moment</h1>;
+    return todos.map((todo) => {
+      return (
+        <li key={todo.id}>
+          <div className="todo_details">
+            <p className={`${todo.completed ? "done" : ""}`}> {todo.text}</p>
+          </div>
+
+          <div className="todo_btn">
+            <button
+              className={`${todo.completed ? "done" : ""}`}
+              onClick={() => handleComplete(todo.id)}
+            >
+              Done
+            </button>
+
+            <i
+              className="fa-solid fa-trash"
+              onClick={() => handleDelete(todo.id)}
+            ></i>
+          </div>
+        </li>
+      );
+    });
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="todo_container">
+      <div className="todo_body">
+        <div className="todo_title">
+          <h1>TaskMeter</h1>
+        </div>
+        <form action="" onSubmit={onSubmit}>
+          <input
+            type="text"
+            placeholder="Add New .."
+            onChange={(e) => setTask(e.currentTarget.value)}
+            value={task}
+          />
+          <button>Add</button>
+        </form>
+        <ul>{renderTodo()}</ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;

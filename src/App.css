@@ -1,42 +1,133 @@
-#root {
-  max-width: 1280px;
+/* font-family: 'Lato', sans-serif;
+font-family: 'Oswald', sans-serif */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.todo_container {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+}
+
+.todo_body {
+  background-color: #f8f9fa;
+  width: 50%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 30px 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.todo_title {
   text-align: center;
+  margin-bottom: 40px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.todo_title h1 {
+  font-size: 40px;
+  color: rgb(15, 40, 77);
+  font-family: "Oswald", sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form {
+  gap: 10px;
+  display: flex;
+  margin-bottom: 40px;
+}
+form input {
+  width: 100%;
+  padding: 15px;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+form button {
+  width: 80px;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: rgb(43, 42, 42);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s;
 }
 
-.card {
-  padding: 2em;
+form button:hover {
+  background-color: #e2e5e7;
 }
 
-.read-the-docs {
-  color: #888;
+.todo_body ul h1 {
+  font-family: "Lato", sans-serif;
+  color: rgb(43, 42, 42);
+}
+
+.todo_body li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  padding: 0px 30px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 8px;
+  height: 60px;
+}
+
+.todo_btn {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.todo_body li p {
+  font-family: "Lato", sans-serif;
+  font-size: 22px;
+  text-transform: capitalize;
+}
+
+.todo_body li p.done {
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.todo_btn button {
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 8px 0px;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  width: 70px;
+  border-radius: 5px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+}
+
+.todo_btn button:hover {
+  background-color: #0d8128;
+}
+
+.todo_btn button.done {
+  background-color: #053a11;
+  color: rgba(255, 255, 255, 0.322);
+}
+
+.todo_btn button.done:hover {
+  background-color: #053a11;
+  color: rgba(255, 255, 255, 0.322);
+}
+
+.todo_btn i {
+  cursor: pointer;
+  font-size: 23px;
+  color: #dc3545;
+  /* height: 40px; */
 }
